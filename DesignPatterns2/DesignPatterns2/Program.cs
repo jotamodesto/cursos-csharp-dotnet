@@ -2,11 +2,17 @@
 using DesignPatterns2.Cap3;
 using DesignPatterns2.Cap4;
 using DesignPatterns2.Cap5;
+using DesignPatterns2.Cap6;
+using DesignPatterns2.Cap7;
+using DesignPatterns2.Cap8;
+using DesignPatterns2.Cap9;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq.Expressions;
+using System.Xml.Serialization;
 
 namespace DesignPatterns2
 {
@@ -19,6 +25,9 @@ namespace DesignPatterns2
             Memento();
             Interpreter();
             Visitor();
+            Bridge();
+            Command();
+            Adapter();
 
             Console.ReadKey();
         }
@@ -111,6 +120,73 @@ namespace DesignPatterns2
             Console.Write(soma.Avalia());
 
             Console.WriteLine("\n-------------");
+        }
+
+        static void Bridge()
+        {
+            Console.WriteLine("Bridge");
+
+            IMensagem mensagem = new MensagemCliente("Johnatan");
+            IEnviador enviadorSms = new EnviaPorSms();
+            mensagem.Enviador = enviadorSms;
+            mensagem.Envia();
+
+            IMensagem mensagemAdm = new MensagemAdministrativa("Johnatan");
+            IEnviador enviadorEmail = new EnviaPorEmail();
+            mensagemAdm.Enviador = enviadorEmail;
+            mensagemAdm.Envia();
+
+
+            Console.WriteLine("-------------");
+        }
+
+        static void Command()
+        {
+            Console.WriteLine("Command");
+
+            FilaDeTrabalho fila = new FilaDeTrabalho();
+            Pedido pedido1 = new Pedido("Johnatan", 100);
+            Pedido pedido2 = new Pedido("Jow", 200);
+
+            fila.Adiciona(new PagaPedido(pedido1));
+            fila.Adiciona(new PagaPedido(pedido2));
+
+            fila.Adiciona(new FinalizaPedido(pedido1));
+
+            fila.Processa();
+
+            Console.WriteLine("-------------");
+        }
+
+        static void Adapter()
+        {
+            Console.WriteLine("Adapter");
+
+            Cliente cliente = new Cliente();
+            cliente.Nome = "Johnatan";
+            cliente.Endereco = "Rua da Mooca";
+            cliente.DataNascimento = DateTime.Now;
+
+            string xml = new GeradorDeXml().GeraXml(cliente);
+
+            Console.WriteLine(xml);
+
+            Console.WriteLine("-------------");
+        }
+
+        static void SingletonFacade()
+        {
+            Console.WriteLine("Singleton & Façades");
+
+            string cpf = "1234";
+
+            EmpresaFacade facade = EmpresaFacadeSingleton.Instancia;
+
+            var cliente = facade.BuscaCliente(cpf);
+            var fatura = facade.CriaFatura(cliente, 5000);
+            facade.GeraCobranca(tipo.Boleto, fatura);
+
+            Console.WriteLine("-------------");
         }
     }
 }
