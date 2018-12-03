@@ -1,9 +1,12 @@
 ﻿using DesignPatterns2.Cap2;
 using DesignPatterns2.Cap3;
+using DesignPatterns2.Cap4;
+using DesignPatterns2.Cap5;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq.Expressions;
 
 namespace DesignPatterns2
 {
@@ -14,6 +17,8 @@ namespace DesignPatterns2
             //Factory();
             Flyweight();
             Memento();
+            Interpreter();
+            Visitor();
 
             Console.ReadKey();
         }
@@ -70,6 +75,42 @@ namespace DesignPatterns2
             Console.WriteLine(historico.Pega(2).Contrato.Tipo);
 
             Console.WriteLine("-------------");
+        }
+
+        static void Interpreter()
+        {
+            Console.WriteLine("Interpreter");
+
+            var esquerda = new Soma(new Numero(1), new Numero(10));
+            var direita = new Subtracao(new Numero(20), new Numero(10));
+            var soma = new Soma(esquerda, direita);
+
+            Console.WriteLine(soma.Avalia());
+
+            // Usando Expressions
+            Expression somaEx = Expression.Add(Expression.Constant(10), Expression.Constant(100));
+            Func<int> funcao = Expression.Lambda<Func<int>>(somaEx).Compile();
+
+            Console.WriteLine(funcao());
+
+            Console.WriteLine("-------------");
+        }
+
+        static void Visitor()
+        {
+            Console.WriteLine("Visitor");
+
+            var esquerda = new Soma(new Numero(1), new Numero(10));
+            var direita = new Subtracao(new Numero(20), new Numero(10));
+            var soma = new Soma(esquerda, direita);
+
+            ImpressoraVisitor impressora = new ImpressoraVisitor();
+
+            soma.Aceita(impressora);
+            Console.Write("=");
+            Console.Write(soma.Avalia());
+
+            Console.WriteLine("\n-------------");
         }
     }
 }
