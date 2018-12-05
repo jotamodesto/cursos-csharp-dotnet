@@ -1,0 +1,1 @@
+# Exercícios sobre SOLID em .NET
