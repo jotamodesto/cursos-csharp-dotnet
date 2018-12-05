@@ -1,4 +1,6 @@
 ﻿using Solid.Cap2;
+using Solid.Cap3;
+using Solid.Cap4;
 using System;
 using System.Collections.Generic;
 
@@ -10,6 +12,8 @@ namespace Solid
         {
             SingleResponsibility();
             Decoupling();
+            DependencyInversion();
+            Encapsuling();
 
             Console.ReadKey();
         }
@@ -37,7 +41,7 @@ namespace Solid
             acoes.Add(new EnviadorDeEmail());
             acoes.Add(new NotaFiscalDao());
             GeradorDeNotaFiscal gnf = new GeradorDeNotaFiscal(acoes);
-            Fatura fatura = new Fatura(2000, "Johnatan");
+            Cap2.Fatura fatura = new Cap2.Fatura(2000, "Johnatan");
             gnf.Gera(fatura);
 
             Console.WriteLine("------------------------");
@@ -46,6 +50,28 @@ namespace Solid
         static void DependencyInversion()
         {
             Console.WriteLine("Dependency Inversion");
+
+            Compra compra = new Compra(500, "sao paulo");
+            CalculadoraDePrecos calc = new CalculadoraDePrecos(new TabelaDePrecoPadrao(), new Transportadora());
+
+            double resultado = calc.Calcula(compra);
+
+            Console.WriteLine("O preço da compra é: " + resultado);
+
+            Console.WriteLine("------------------------");
+        }
+
+        static void Encapsuling()
+        {
+            Console.WriteLine("Encapsuling");
+
+            Cap4.Fatura fatura = new Cap4.Fatura("john", 1000);
+            ProcessadorDeBoletos processador = new ProcessadorDeBoletos();
+            var boletos = new List<Boleto>() { new Boleto() { Valor = 1000 } };
+
+            processador.Processa(boletos, fatura);
+
+            Console.WriteLine(fatura.Pago);
 
             Console.WriteLine("------------------------");
         }

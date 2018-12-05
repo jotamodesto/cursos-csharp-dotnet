@@ -4,16 +4,11 @@ using System.Text;
 
 namespace Solid.Cap3
 {
-    class Frete : IServicoDeEntrega
+    class Transportadora : IServicoDeEntrega
     {
         public double Para(string cidade)
         {
-            if ("SAO PAULO".Equals(cidade.ToUpper()))
-            {
-                return 15;
-            }
-
-            return 30;
+            return 5;
         }
     }
 }

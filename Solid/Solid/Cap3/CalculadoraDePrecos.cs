@@ -6,13 +6,19 @@ namespace Solid.Cap3
 {
     class CalculadoraDePrecos
     {
+        private readonly ITabelaDePreco tabela;
+        private readonly IServicoDeEntrega entrega;
+
+        public CalculadoraDePrecos(ITabelaDePreco tabela, IServicoDeEntrega entrega)
+        {
+            this.tabela = tabela;
+            this.entrega = entrega;
+        }
+
         public double Calcula(Compra produto)
         {
-            TabelaDePrecoPadrao tabela = new TabelaDePrecoPadrao();
-            Frete correios = new Frete();
-
             double desconto = tabela.DescontoPara(produto.Valor);
-            double frete = correios.Para(produto.Cidade);
+            double frete = entrega.Para(produto.Cidade);
 
             return produto.Valor * (1 - desconto) + frete;
         }

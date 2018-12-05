@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Solid.Cap3
 {
-    class TabelaDePrecoPadrao
+    class TabelaDePrecoPadrao : ITabelaDePreco
     {
         public double DescontoPara(double valor)
         {
