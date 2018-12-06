@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.136
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Caelum.Leilao", "Caelum.Leilao\Caelum.Leilao.csproj", "{698BC183-31DE-4100-BB66-BE9DB06F292F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Caelum.Leilao.Tests", "Caelum.Leilao.Tests\Caelum.Leilao.Tests.csproj", "{64951A7C-698D-4FF6-A99A-806A8492508B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5E86F5DF-FA27-407E-9B77-137499F7F149}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{698BC183-31DE-4100-BB66-BE9DB06F292F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{698BC183-31DE-4100-BB66-BE9DB06F292F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{698BC183-31DE-4100-BB66-BE9DB06F292F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{698BC183-31DE-4100-BB66-BE9DB06F292F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64951A7C-698D-4FF6-A99A-806A8492508B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64951A7C-698D-4FF6-A99A-806A8492508B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64951A7C-698D-4FF6-A99A-806A8492508B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64951A7C-698D-4FF6-A99A-806A8492508B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {50ACA767-BD0B-48AB-B5C0-DE7ED006B680}
+	EndGlobalSection
+EndGlobal
